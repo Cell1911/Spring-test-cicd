@@ -61,6 +61,16 @@
 	<build>
 		<plugins>
 			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version> <!-- Use the latest stable version -->
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory> <!-- Default location -->
+                    <outputDirectory>${project.build.directory}</outputDirectory> <!-- Default output directory -->
+                    <finalName>${project.artifactId}-${project.version}</finalName> <!-- Name of the WAR file -->
+                </configuration>
+            </plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
