@@ -60,15 +60,26 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<plugin><!-- don't pack the war  -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version> <!-- Use the latest stable version -->
-                <configuration>
-                    <warSourceDirectory>src/main/webapp</warSourceDirectory> <!-- Default location -->
-                    <outputDirectory>${project.build.directory}</outputDirectory> <!-- Default output directory -->
-                    <finalName>${project.artifactId}-${project.version}</finalName> <!-- Name of the WAR file -->
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>war-exploded</id>
+                        <configuration>
+                            <webappDirectory>target/deploy</webappDirectory>
+                            <archiveClasses>true</archiveClasses>
+                        </configuration>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>exploded</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
