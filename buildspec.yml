@@ -8,7 +8,7 @@ phases:
     commands:
     - echo Entering build phase...
     - echo Build started on `date`
-    - mvn clean prepare-package war:exploded
+    - ./mvnw clean prepare-package war:exploded
     - ls -lrt
     - ls -lrt target/
   post_build:
