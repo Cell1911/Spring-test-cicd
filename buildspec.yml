@@ -1,18 +1,22 @@
 version: 0.2
-
 phases:
   pre_build:
     commands:
-    -echo "Entered the pre-build stage"
+    - echo Entering pre_build phase...
+    - ls -lrt
   build:
     commands:
-    -echo "Entered the build stage"
-    -./mvnw clean prepare-package war:exploded
+    - echo Entering build phase...
+    - echo Build started on `date`
+    - mvn clean prepare-package war:exploded
+    - ls -lrt
+    - ls -lrt target/
   post_build:
     commands:
-    -echo "entered the post-build stage"
-    -mv target/deploy ./
-
+    - echo Entering post_build phase...
+    - echo Build completed on `date`i
+    - ls -lrt
+    - mv target/deploy ./
 artifacts:
   files:
-    -deploy/**/*
+  - deploy/**/*
